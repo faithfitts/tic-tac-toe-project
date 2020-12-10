@@ -18,6 +18,9 @@ $(() => {
   // Click event for sign out:
   $('#sign-out').on('click', events.onSignOut)
 
-  // Click event for starting a New Game:
+  // New Game Listener
   $('#start-new-game').on('submit', events.onNewGame)
+
+  // Click event for game board
+  $('.box').on('click', events.onSquareClick)
 })

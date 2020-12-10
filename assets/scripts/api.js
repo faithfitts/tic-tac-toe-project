@@ -1,4 +1,5 @@
 'use strict'
+
 const config = require('./config')
 const store = require('./store')
 
@@ -40,14 +41,35 @@ const signOut = function () {
   })
 }
 
+// API for Game
+
 const newGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
-    game: {
-    },
+    game: {},
     headers: {
       Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
+const squareClick = function (cellIndex, playerTurn) {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.game._id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    data: {
+      game: {
+        cell: {
+          index: cellIndex,
+          value: playerTurn
+        },
+        over: false
+
+      }
     }
   })
 }
@@ -57,5 +79,6 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
-  newGame
+  newGame,
+  squareClick
 }

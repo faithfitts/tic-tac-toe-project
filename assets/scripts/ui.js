@@ -42,9 +42,8 @@ const signOutSuccess = function () {
   $('.unauthenticated').show()
   $('.authenticated').hide()
 
-  // Removes token?
+  // Removes token
   store.user = null
-
   // Resets the form:
   $('form').trigger('reset')
 }
@@ -72,9 +71,15 @@ const newGameSuccess = function (response) {
 
 const newGameFailure = function (error) {
   $('#message').text('Sorry! You can not create a new game: ' + error.responseJSON.message)
-
-  // store.game = error.game
 }
+
+// Clicking the Squares Success & Failure
+const squareClickSuccess = function (response) {
+  $('#message').text('Square Clicked!')
+  console.log(response)
+  store.game = response.game
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -85,6 +90,7 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   newGameSuccess,
-  newGameFailure
+  newGameFailure,
+  squareClickSuccess
 
 }
