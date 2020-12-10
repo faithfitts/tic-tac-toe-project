@@ -38,9 +38,8 @@ const changePasswordFailure = function (error) {
 // Sign-Out Success & Failure
 const signOutSuccess = function () {
   $('#message').text('Sign Out Successful!')
-
-  $('.authenticated').hide()
   $('.unauthenticated').show()
+  $('.authenticated').hide()
 
   // Research what this does??????
   store.user = null
@@ -52,6 +51,29 @@ const signOutSuccess = function () {
 const signOutFailure = function (error) {
   $('#message').text('SignOut Failed: ' + error.responseJSON.message)
 }
+
+// GAME UI BEGINS HERE
+
+// Creating a New Game Success & Failure
+const newGameSuccess = function (response) {
+  // console.log(response.data)
+  $('.authenticated').show()
+  $('.new-game').show()
+  $('#message').text('New Game Started!')
+  $('#form').trigger('reset')
+
+  store.game = response.game
+  const gameObject = response.game
+  console.log('Game Object: ', gameObject)
+
+  $('.unauthenticated').hide()
+}
+
+const newGameFailure = function (error) {
+  $('#message').text('Sorry! You can not create a new game: ' + error.responseJSON.message)
+
+  // store.game = error.game
+}
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -60,6 +82,8 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  newGameSuccess,
+  newGameFailure
 
 }

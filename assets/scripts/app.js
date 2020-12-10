@@ -3,8 +3,9 @@
 const events = require('./events')
 
 $(() => {
-  // Hide authenticated options:
   $('.authenticated').hide()
+  $('.new-game').hide()
+
   // Sign-Up Listener:
   $('#sign-up').on('submit', events.onSignUp)
 
@@ -16,4 +17,7 @@ $(() => {
 
   // Click event for sign out:
   $('#sign-out').on('click', events.onSignOut)
+
+  // Click event for starting a New Game:
+  $('#start-new-game').on('submit', events.onNewGame)
 })

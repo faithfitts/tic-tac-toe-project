@@ -3,3 +3,9 @@
 .authenticated {
   display: none;
 }
+
+.box {
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+}

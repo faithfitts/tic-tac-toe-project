@@ -34,14 +34,33 @@ const onChangePassword = function (event) {
 }
 
 const onSignOut = function (event) {
+  event.preventDefault()
+
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
 }
 
+const onNewGame = function (event) {
+  event.preventDefault()
+  const form = event.target
+  const data = getFormFields(form)
+
+  api.newGame(data)
+    .then(function (response) {
+      return response
+    })
+    .then(ui.newGameSuccess)
+    .catch(ui.newGameFailure)
+}
+
+const playerSquare = 'X'
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  onNewGame,
+  playerSquare
 }
