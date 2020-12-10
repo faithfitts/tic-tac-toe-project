@@ -38,10 +38,11 @@ const changePasswordFailure = function (error) {
 // Sign-Out Success & Failure
 const signOutSuccess = function () {
   $('#message').text('Sign Out Successful!')
+  $('.new-game').hide()
   $('.unauthenticated').show()
   $('.authenticated').hide()
 
-  // Research what this does??????
+  // Removes token?
   store.user = null
 
   // Resets the form:
