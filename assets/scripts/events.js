@@ -55,7 +55,8 @@ const onNewGame = function (event) {
     .catch(ui.newGameFailure)
 }
 
-const playerTurn = 'X'
+let playerTurn = 'X'
+
 const onSquareClick = function (event) {
   const cellIndex = $(event.target).data('cell-index')
   const gameArray = store.game.cells
@@ -65,14 +66,23 @@ const onSquareClick = function (event) {
   if (value === '') {
     $(event.target).html(playerTurn)
 
+    // update API
     api.squareClick(cellIndex, playerTurn)
       .then(ui.squareClickSuccess)
-      // .catch(ui.squareClickFailure)
+      .catch(ui.squareClickFailure)
 
-  // if space is taken
+    // change turn
+    if (playerTurn === 'X') {
+      playerTurn = 'O'
+    } else {
+      playerTurn = 'X'
+    }
+
+    // if space is taken
   } else {
-    $('#message').text('This space is taken.')
+    $('#message').text('This spot is taken')
   }
+  console.log('It is now ' + playerTurn + ' turn')
 }
 
 module.exports = {
@@ -81,5 +91,6 @@ module.exports = {
   onChangePassword,
   onSignOut,
   onNewGame,
-  onSquareClick
+  onSquareClick,
+  playerTurn
 }

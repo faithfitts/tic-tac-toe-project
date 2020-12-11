@@ -22,5 +22,5 @@ $(() => {
   $('#start-new-game').on('submit', events.onNewGame)
 
   // Click event for game board
-  $('.box').on('click', events.onSquareClick)
+  $('.box').on('click', events.onSquareClick, events.onPlayerTurn)
 })
