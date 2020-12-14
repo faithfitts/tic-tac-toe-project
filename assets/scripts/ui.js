@@ -14,9 +14,9 @@ const signUpFailure = function (error) {
 // Sign-In Success & Failure Responses
 const signInSuccess = function (response) {
   $('#message').text('You have successfully signed in!')
+  $('#message').css('color', 'green')
   console.log(store)
   store.user = response.user
-  console.log(store)
 
   $('.unauthenticated').hide()
   $('.authenticated').show()
@@ -24,32 +24,37 @@ const signInSuccess = function (response) {
 
 const signInFailure = function (error) {
   $('#message').text('Sorry! Sign Up Failed: ' + error.responseJSON.message)
+  $('#message').css('color', 'red')
 }
 
 // Change-Password Success & Failure
 const changePasswordSuccess = function (response) {
   $('#message').text('You have successfully changed your password!')
+  $('#message').css('color', 'green')
 }
 
 const changePasswordFailure = function (error) {
   $('#message').text('We were unable to change your password. Please try again! ' + error.responseJSON.message)
+  $('#message').css('color', 'red')
 }
 
 // Sign-Out Success & Failure
 const signOutSuccess = function () {
   $('#message').text('Sign Out Successful!')
+  $('#message').css('color', 'green')
   $('.new-game').hide()
   $('.unauthenticated').show()
   $('.authenticated').hide()
 
   // Removes token
   store.user = null
-  // Resets the form:
+  // Resets the form
   $('form').trigger('reset')
 }
 
 const signOutFailure = function (error) {
   $('#message').text('SignOut Failed: ' + error.responseJSON.message)
+  $('#message').css('color', 'red')
 }
 
 // GAME UI BEGINS HERE
@@ -60,7 +65,7 @@ const newGameSuccess = function (response) {
   $('.authenticated').show()
   $('.new-game').show()
   $('#message').text('New Game Started!')
-  $('#form').trigger('reset')
+  $('#message').css('color', 'green')
 
   store.game = response.game
   const gameObject = response.game
@@ -71,13 +76,34 @@ const newGameSuccess = function (response) {
 
 const newGameFailure = function (error) {
   $('#message').text('Sorry! You can not create a new game: ' + error.responseJSON.message)
+  $('#message').css('color', 'red')
 }
 
-// Clicking the Squares Success & Failure
-const squareClickSuccess = function (response) {
+// Checking the Squares Success & Failure
+const updateGameSuccess = function (response) {
   $('#message').text('Square Clicked!')
-  console.log(response)
+  $('#message').css('color', 'green')
+
   store.game = response.game
+  const gameObject = store.game.cells
+  console.log(gameObject)
+}
+
+// Checking for a winner
+const checkWinnerSuccess = function (response) {
+  $('#message').text('Next Player!!!')
+  $('#message').css('color', 'green')
+
+  // store.game = response.game
+  // const gameObject = store.game.over
+  // console.log(gameObject)
+}
+
+// Game Stats (INCOMPLETE)
+const gamesPlayedSuccess = function (data) {
+  const gamesPlayed = data.game.over
+  console.log(data)
+  $('#message').text(`You've played ${gamesPlayed} games.`)
 }
 
 module.exports = {
@@ -91,6 +117,8 @@ module.exports = {
   signOutFailure,
   newGameSuccess,
   newGameFailure,
-  squareClickSuccess
+  updateGameSuccess,
+  checkWinnerSuccess,
+  gamesPlayedSuccess
 
 }

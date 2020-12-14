@@ -54,7 +54,7 @@ const newGame = function (data) {
   })
 }
 
-const squareClick = function (cellIndex, playerTurn) {
+const updateGame = function (cellIndex, playerTurn, over) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,
     method: 'PATCH',
@@ -67,9 +67,24 @@ const squareClick = function (cellIndex, playerTurn) {
           index: cellIndex,
           value: playerTurn
         },
-        over: false
-
+        over: over
       }
+    }
+  })
+}
+
+const gamesPlayed = function (over) {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    data: {
+      game: {
+        over: over
+      }
+
     }
   })
 }
@@ -80,5 +95,6 @@ module.exports = {
   changePassword,
   signOut,
   newGame,
-  squareClick
+  updateGame,
+  gamesPlayed
 }

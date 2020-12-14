@@ -14,17 +14,18 @@
 </head>
 
 <body>
-  <h1> Most Amazing Tic Tac Toe in Creation!</h1>
+  <h1> Old Skool </br> Tic - Tac - Toe!</h1>
 
   <p id="message"></p>
 
+
   <div class="unauthenticated">
-    <form id="sign-up">
+    <span><form id="sign-up">
       <input name="credentials[email]" placeholder="email" type="text" />
       <input name="credentials[password]" placeholder="password" type="password" />
       <input name="credentials[password_confirmation]" placeholder="confirm password" type="password" />
       <button type="submit">Sign Up</button>
-    </form>
+    </form></span>
 
     <form id="sign-in">
       <input name="credentials[email]" placeholder="email" type="text" />
@@ -34,15 +35,19 @@
   </div>
 
   <div class="authenticated">
-    <form id="change-password">
+    <span><form id="change-password">
       <input name="passwords[old]" placeholder="old password" type="password" />
       <input name="passwords[new]" placeholder="new password" type="password" />
       <button type="submit">Change Password</button>
-    </form>
+    </form></span>
 
     <form id="start-new-game">
       <button type="submit">New Game</button>
     </form>
+
+<form id="games-played">
+  <button type="submit">Game Stats</button>
+</form>
 
     <button id="sign-out">Sign Out</button>
 

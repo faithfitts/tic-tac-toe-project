@@ -1,14 +1,45 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+
 
 .authenticated {
   display: none;
+}
+
+div span{
+   margin: 5px;
+}
+
+h1 {
+  font-size: 80px;
+  font-family: 'Fredericka the Great', cursive;
+}
+
+body {
+  background: url('http://i.imgur.com/7L3Ytkl.png') no-repeat center fixed;
+    background-size: cover;
+font-family: 'Pangolin', cursive;
+  font-size: 35px;
+  color: white;
+text-align: center;
+padding: 100px;
+margin: 50px;
 }
 
 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid;
-  height: 100px;
-  padding: 40px;
+  justify-content: center;
+  height: 200px;
+
+  background: url('http://i.imgur.com/7L3Ytkl.png') center;
+  border: 2px solid white;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 90px;
+  color:#ffffff;
+  border-radius: 10px;
+
+
 }
