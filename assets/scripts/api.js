@@ -3,6 +3,9 @@
 const config = require('./config')
 const store = require('./store')
 
+// Authentication API's
+
+// API call for when we sign up
 const signUp = function (formData) {
   return $.ajax({
     url: config.apiUrl + '/sign-up',
@@ -11,6 +14,7 @@ const signUp = function (formData) {
   })
 }
 
+// API call for when we sign in
 const signIn = function (formData) {
   return $.ajax({
     url: config.apiUrl + '/sign-in',
@@ -19,6 +23,7 @@ const signIn = function (formData) {
   })
 }
 
+// API call for changing the password
 const changePassword = function (formData) {
   console.log(store.user)
   return $.ajax({
@@ -31,6 +36,7 @@ const changePassword = function (formData) {
   })
 }
 
+// API call for when we sign out
 const signOut = function () {
   return $.ajax({
     url: config.apiUrl + '/sign-out',
@@ -43,6 +49,7 @@ const signOut = function () {
 
 // API for Game
 
+// API call for when we start a new game
 const newGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -54,7 +61,8 @@ const newGame = function (data) {
   })
 }
 
-const updateGame = function (cellIndex, playerTurn, over) {
+// API call for when we make a move
+const updateGame = function (cellIndex, playerTurn) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,
     method: 'PATCH',
@@ -67,12 +75,33 @@ const updateGame = function (cellIndex, playerTurn, over) {
           index: cellIndex,
           value: playerTurn
         },
-        over: over
+        over: false
       }
     }
   })
 }
 
+// API call for when the game is over
+const gameOver = function () {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.game._id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    data: {
+      game: {
+        cell: {
+          index: 0,
+          value: 'x'
+        },
+        over: true
+      }
+    }
+  })
+}
+
+// API call for how many games have been played (Game Stats)
 const gamesPlayed = function (over) {
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -96,5 +125,6 @@ module.exports = {
   signOut,
   newGame,
   updateGame,
+  gameOver,
   gamesPlayed
 }

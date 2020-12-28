@@ -1,21 +1,23 @@
 'use strict'
 
 const store = require('./store')
+// const events = require('./events')
 
 // Sign-Up Success & Failure Responses
 const signUpSuccess = function (response) {
-  $('#message').text('You have signed Up Successfully!')
+  $('#message').text('You have Signed Up Successfully!')
+  $('#message').css('color', 'green')
 }
 
 const signUpFailure = function (error) {
-  $('#message').text('We were unable to sign you in. Please try again. ' + error.message)
+  $('#message').text('We were unable to sign you up. Please try again. ' + error.message)
+  $('#message').css('color', 'red')
 }
 
 // Sign-In Success & Failure Responses
 const signInSuccess = function (response) {
   $('#message').text('You have successfully signed in!')
   $('#message').css('color', 'green')
-  console.log(store)
   store.user = response.user
 
   $('.unauthenticated').hide()
@@ -23,7 +25,7 @@ const signInSuccess = function (response) {
 }
 
 const signInFailure = function (error) {
-  $('#message').text('Sorry! Sign Up Failed: ' + error.responseJSON.message)
+  $('#message').text('Sorry! Sign In Failed: ' + error.responseJSON.message)
   $('#message').css('color', 'red')
 }
 
@@ -61,15 +63,12 @@ const signOutFailure = function (error) {
 
 // Creating a New Game Success & Failure
 const newGameSuccess = function (response) {
-  // console.log(response.data)
   $('.authenticated').show()
   $('.new-game').show()
   $('#message').text('New Game Started!')
   $('#message').css('color', 'green')
 
   store.game = response.game
-  const gameObject = response.game
-  console.log('Game Object: ', gameObject)
 
   $('.unauthenticated').hide()
 }
@@ -79,31 +78,21 @@ const newGameFailure = function (error) {
   $('#message').css('color', 'red')
 }
 
-// Checking the Squares Success & Failure
+// Checking the Squares Success
 const updateGameSuccess = function (response) {
-  $('#message').text('Square Clicked!')
-  $('#message').css('color', 'green')
-
   store.game = response.game
-  const gameObject = store.game.cells
-  console.log(gameObject)
 }
 
-// Checking for a winner
+// Checking for a Winner
 const checkWinnerSuccess = function (response) {
   $('#message').text('Next Player!!!')
   $('#message').css('color', 'green')
-
-  // store.game = response.game
-  // const gameObject = store.game.over
-  // console.log(gameObject)
 }
 
-// Game Stats (INCOMPLETE)
-const gamesPlayedSuccess = function (data) {
-  const gamesPlayed = data.game.over
-  console.log(data)
-  $('#message').text(`You've played ${gamesPlayed} games.`)
+// Game Stats
+const gamesPlayedSuccess = function (response) {
+  $('#message').text(`You've played ${response.games.length} games.`)
+  $('#message').css('color', 'yellow')
 }
 
 module.exports = {
@@ -120,5 +109,4 @@ module.exports = {
   updateGameSuccess,
   checkWinnerSuccess,
   gamesPlayedSuccess
-
 }
