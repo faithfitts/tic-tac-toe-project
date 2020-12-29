@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <h1> Old Skool </br> Tic - Tac - Toe!</h1>
+
+  <p id="message"></p>
+
+
+  <div class="unauthenticated">
+    <span><form id="sign-up">
+      <input name="credentials[email]" placeholder="email" type="text" />
+      <input name="credentials[password]" placeholder="password" type="password" />
+      <input name="credentials[password_confirmation]" placeholder="confirm password" type="password" />
+      <button type="submit">Sign Up</button>
+    </form></span>
+
+    <form id="sign-in">
+      <input name="credentials[email]" placeholder="email" type="text" />
+      <input name="credentials[password]" placeholder="password" type="password" />
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+
+  <div class="authenticated">
+    <span><form id="change-password">
+      <input name="passwords[old]" placeholder="old password" type="password" />
+      <input name="passwords[new]" placeholder="new password" type="password" />
+      <button type="submit">Change Password</button>
+    </form></span>
+
+    <form id="start-new-game">
+      <button type="submit">New Game</button>
+    </form>
+
+<form id="games-played">
+  <button type="submit">Game Stats</button>
+</form>
+
+    <button id="sign-out">Sign Out</button>
+
+      </div>
+
+      <div class="new-game">
+        <div class="row">
+          <div class="col-4 box" data-cell-index='0'>0</div>
+          <div class="col-4 box" data-cell-index='1'>1</div>
+          <div class="col-4 box" data-cell-index='2'>2</div>
+          <div class="col-4 box" data-cell-index='3'>3</div>
+          <div class="col-4 box" data-cell-index='4'>4</div>
+          <div class="col-4 box" data-cell-index='5'>5</div>
+          <div class="col-4 box" data-cell-index='6'>6</div>
+          <div class="col-4 box" data-cell-index='7'>7</div>
+          <div class="col-4 box" data-cell-index='8'>8</div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
